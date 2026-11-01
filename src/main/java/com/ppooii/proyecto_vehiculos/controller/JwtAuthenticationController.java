@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.PPOOII.Laboratorio.Config.Model.JwtRequest;
-import com.PPOOII.Laboratorio.Config.Model.JwtResponse;
+import com.ppooii.proyecto_vehiculos.config.model.JwtRequest;
+import com.ppooii.proyecto_vehiculos.config.model.JwtResponse;
 import com.ppooii.proyecto_vehiculos.config.JWTAuthenticationConfig;
 
 import io.swagger.v3.oas.annotations.Operation;

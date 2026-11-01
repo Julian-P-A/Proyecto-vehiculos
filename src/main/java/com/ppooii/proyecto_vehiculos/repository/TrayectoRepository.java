@@ -34,12 +34,15 @@ public interface TrayectoRepository extends JpaRepository<Trayecto, Integer> {
     nativeQuery = true)
 	List<Map<String, Object>> consultarDetalleCargueMapeado(@Param("idCargue") Double idCargue);
 	
-	@Procedure(name = "CARGAR_DATOS_EXCEL")
-	public abstract void CARGAR_DATOS_EXCEL(String personaId, String vehiculoId, String codigoRuta, String ubicacion, String ordenParada, String login, Double idCargue);
+	@Procedure(procedureName = "CARGAR_DATOS_EXCEL")
+	public abstract void CARGAR_DATOS_EXCEL(@Param("p_persona_id") String personaId,
+			@Param("p_vehiculo_id") String vehiculoId, @Param("p_codigo_ruta") String codigoRuta,
+			@Param("p_ubicacion") String ubicacion, @Param("p_orden_parada") String ordenParada,
+			@Param("p_login") String login, @Param("p_id_cargue") Double idCargue);
 	
-	@Procedure(name = "VALIDAR_DATOS_CARGUE")
-	public abstract void VALIDAR_DATOS_CARGUE(Double idCargue);
+	@Procedure(procedureName = "VALIDAR_DATOS_CARGUE")
+	public abstract void VALIDAR_DATOS_CARGUE(@Param("p_id_cargue") Double idCargue);
 	
-	@Procedure(name = "PROCESAR_DATOS_EXCEL")
-	public abstract void PROCESAR_DATOS_EXCEL(Double idCargue);
+	@Procedure(procedureName = "PROCESAR_DATOS_EXCEL")
+	public abstract void PROCESAR_DATOS_EXCEL(@Param("p_id_cargue") Double idCargue);
 }

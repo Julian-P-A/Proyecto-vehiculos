@@ -6,6 +6,9 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -13,17 +16,23 @@ import java.net.URI;
 
 import java.io.IOException;
 
+@Component
 public class Geocoder {
 	
 	private static final String GEOCODING_RESOURCE = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=all&inputtype=textquery&key=";
-	private static final String API_KEY = "";
+	private final String apiKey;
 	
-	public Geocoder() {}
+	public Geocoder(@Value("${google.maps.api-key}") String apiKey) {
+        if (apiKey == null || apiKey.isBlank()) {
+            throw new IllegalArgumentException("GOOGLE_MAPS_API_KEY es obligatorio");
+        }
+        this.apiKey = apiKey;
+    }
 	
 	public String GeoCodeSync(String query) throws IOException, InterruptedException {
 		HttpClient httpClient = HttpClient.newHttpClient();
 		String encodedQuery = URLEncoder.encode(query, "UTF-8");
-		String requestUri = GEOCODING_RESOURCE + API_KEY + "&input=" + encodedQuery;
+		String requestUri = GEOCODING_RESOURCE + URLEncoder.encode(apiKey, "UTF-8") + "&input=" + encodedQuery;
 		HttpRequest geocodingRequest = HttpRequest.newBuilder().GET().uri(URI.create(requestUri))
 				.timeout(Duration.ofMillis(2000)).build();
 		HttpResponse geocodingResponse = httpClient.send(geocodingRequest, 

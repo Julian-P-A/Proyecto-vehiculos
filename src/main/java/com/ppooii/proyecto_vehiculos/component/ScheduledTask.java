@@ -49,6 +49,9 @@ public class ScheduledTask {
 	@Autowired
 	@Qualifier("ITrayectoRepo")
 	private TrayectoRepository trayectoRepository;
+
+	@Autowired
+	private Geocoder geocoder;
 	
 	@Scheduled (fixedRate = 90000)
 	public void scheduleTaskWithFixedrRate() {
@@ -57,8 +60,6 @@ public class ScheduledTask {
 		try {
             List<Trayecto> trayectos = trayectoRepository.findAll();
             if (trayectos.isEmpty()) return;
-
-            Geocoder geocoder = new Geocoder();
 
             for (Trayecto trayecto : trayectos) {
                 String LatLng = geocoder.getLatLng(trayecto.getUbicacion());

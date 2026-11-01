@@ -1,8 +1,8 @@
 package com.ppooii.proyecto_vehiculos.config;
 
-import static com.PPOOII.Laboratorio.Config.Model.Constants.SUPER_SECRET_KEY;
-import static com.PPOOII.Laboratorio.Config.Model.Constants.TOKEN_EXPIRATION_TIME;
-import static com.PPOOII.Laboratorio.Config.Model.Constants.getSigningKey;
+import static com.ppooii.proyecto_vehiculos.config.model.Constants.SUPER_SECRET_KEY;
+import static com.ppooii.proyecto_vehiculos.config.model.Constants.TOKEN_EXPIRATION_TIME;
+import static com.ppooii.proyecto_vehiculos.config.model.Constants.getSigningKey;
 
 import java.util.Date;
 import java.util.List;
